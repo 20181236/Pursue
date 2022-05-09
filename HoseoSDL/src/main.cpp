@@ -28,6 +28,7 @@ void render();
 
 int main(int argc, char* argv[])
 {
+    //github test
     if (!init()) {
 			return 1; // something's wrong
     }
@@ -47,7 +48,7 @@ int main(int argc, char* argv[])
     SDL_Color color_Blue = { 0, 0, 255 };
     SDL_Color color_White = { 255, 255, 255 };
 #ifdef UNICODE
-    SDL_Surface* temp_surf = TTF_RenderUNICODE_Shaded(m_pFont, (Uint16*)L"한글 텍스쳐", color_Blue, color_White);
+    SDL_Surface* temp_surf = TTF_RenderUNICODE_Shaded(m_pFont, (Uint16*)L"텍스트 텍스쳐", color_Blue, color_White);
 #else
     SDL_Surface* temp_surf = TTF_RenderUTF8_Shaded(m_pFont, "한글 텍스쳐", color_Blue, color_White);
 #endif
