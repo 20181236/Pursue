@@ -168,16 +168,13 @@ void handleInput()
 
 void update()
 {
-    if (bLeftMousePressed)
+    /*if (bLeftMousePressed)
     {
-        // chunk에 담긴 사운드 재생, -1은 가장 가까운 채널, 0은 반복 횟수
-        Mix_PlayChannel(-1, chunk, 0);
-        printf("왼쪽클릭 눌림 - 사운드 재생\n");
-         v3 = sub(target, this.pos);
-        prediction.mult(slider.value());
-        prediction.mult(v3.mag() / 30);
 
-    }
+    }*/
+    v3 = sub(target, this.pos);
+    prediction.mult(slider.value());
+    prediction.mult(v3.mag() / 30);
 }
 
 void render()
