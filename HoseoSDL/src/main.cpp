@@ -6,6 +6,9 @@
 #include <SDL2/SDL2_gfxPrimitives.h>
 #include <SDL2/SDL_ttf.h>
 #include <SDL2/SDL_mixer.h>
+#include "InputHandler.h"
+#include "Vector2D.h"
+
 
 SDL_Window* g_pWindow = 0;
 SDL_Renderer* g_pRenderer = 0;
