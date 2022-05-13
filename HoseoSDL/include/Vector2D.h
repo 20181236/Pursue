@@ -136,6 +136,35 @@ public:
     return add(f);
     }
 
+    void pursue(vehicle, modification) {
+        target = vehicle.pos.copy();
+        prediction = vehicle.vel.copy();
+        prediction.mult(10);
+        target.add(prediction);
+        fill(0, 255, 0);
+        //circle(target.x, target.y, 16);
+        return this.seek(target, modification);
+    }
+
+    void evade(vehicle) {
+        return this.pursue(vehicle, 'FLEE');
+    }
+
+    void flee(target) {
+        return this.seek(target, 'FLEE');
+    }
+
+    void seek(target, modification) {
+        force = p5.Vector.sub(target, this.pos);
+        force.setMag(this.maxSpeed);
+        if (modification == 'FLEE') {
+            force.mult(-1);
+        }
+        force.sub(this.vel);
+        force.limit(this.maxForce);
+        return force;
+    }
+
 private:
     float m_x;
     float m_y;
