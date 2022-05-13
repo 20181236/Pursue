@@ -28,8 +28,7 @@ void render();
 
 int main(int argc, char* argv[])
 {
-    //github test
-    //github test2
+    //githu
     if (!init()) {
 			return 1; // something's wrong
     }
@@ -53,7 +52,7 @@ int main(int argc, char* argv[])
 #else
     SDL_Surface* temp_surf = TTF_RenderUTF8_Shaded(m_pFont, "한글 텍스쳐", color_Blue, color_White);
 #endif
-		if (temp_surf == 0) {	
+   		if (temp_surf == 0) {	
 				SDL_Log("%s", TTF_GetError());
         return false;
     }
@@ -162,7 +161,7 @@ void handleInput()
 				
 			}
     }
-}
+ }
 
 void update()
 {
@@ -171,6 +170,10 @@ void update()
         // chunk에 담긴 사운드 재생, -1은 가장 가까운 채널, 0은 반복 횟수
         Mix_PlayChannel(-1, chunk, 0);
         printf("왼쪽클릭 눌림 - 사운드 재생\n");
+         v3 = sub(target, this.pos);
+        prediction.mult(slider.value());
+        prediction.mult(v3.mag() / 30);
+
     }
 }
 
@@ -183,7 +186,36 @@ void render()
     SDL_RenderCopy(g_pRenderer, texureImage, &rectImage, &rectImage);
     SDL_RenderCopy(g_pRenderer, texureText, &rectText, &rectText);
 
-    filledCircleColor(g_pRenderer, 300, 300, 50, 0xFFFFFF00);
+    filledCircleColor(g_pRenderer, 300, 300, 50, 0xFFFF0000);
 
     SDL_RenderPresent(g_pRenderer);
+}
+
+void pursue(vehicle, modification) {
+    let target = vehicle.pos.copy();
+    let prediction = vehicle.vel.copy();
+    prediction.mult(10);
+    target.add(prediction);
+    fill(0, 255, 0);
+    //circle(target.x, target.y, 16);
+    return this.seek(target, modification);
+}
+
+void evade(vehicle) {
+    return this.pursue(vehicle, 'FLEE');
+}
+
+void flee(target) {
+    return this.seek(target, 'FLEE');
+}
+
+void seek(target, modification) {
+    let force = p5.Vector.sub(target, this.pos);
+    force.setMag(this.maxSpeed);
+    if (modification == 'FLEE') {
+        force.mult(-1);
+    }
+    force.sub(this.vel);
+    force.limit(this.maxForce);
+    return force;
 }
